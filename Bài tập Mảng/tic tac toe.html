@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Caro Game</title>
+    <style>
+        .board {
+            display: flex;
+            flex-wrap: wrap;
+            width: 300px;
+            height: 300px;
+        }
+
+        .cell {
+            box-sizing: border-box;
+            width: 33.33%;
+            height: 33.33%;
+            border: 1px solid black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="board">
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+</div>
+
+<script>
+    const cells = document.querySelectorAll('.cell');
+    let currentPlayer = 'X'; // Nguoi choi hien tai(X or O)
+    let gameOver = false;
+
+    cells.forEach(cell => {
+        cell.addEventListener('click', () => {
+            if (!gameOver && cell.innerHTML === '') {
+                cell.innerHTML = currentPlayer;
+                cell.classList.add(currentPlayer);
+
+                if (checkWin(currentPlayer)) {
+                    alert('win: ' + currentPlayer);
+                    gameOver = true;
+                } else {
+                    currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+                }
+            }
+        });
+    });
+
+    function checkWin(player) {
+        const winningCombinations = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8], // hàng ngang
+            [0, 3, 6], [1, 4, 7], [2, 5, 8], // hàng doc
+            [0, 4, 8], [2, 4, 6] // hàng chéo
+        ];
+
+        return winningCombinations.some(combination => {
+            return combination.every(index => {
+                return cells[index].classList.contains(player);
+            });
+        });
+    }
+</script>
+</body>
+</html>
