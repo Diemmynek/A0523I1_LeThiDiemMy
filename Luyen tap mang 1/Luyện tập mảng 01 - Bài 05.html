@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dếm số nguyên âm trong một chuỗi:</title>
+</head>
+<body>
+</body>
+<script>
+    let arr=prompt("Nhập một chuỗi:");
+    let arrList='ueoaiUEOAI'
+    arr.toString();
+    let count=0;
+    for (let i = 0; i <arr.length ; i++) {
+        if(arrList.includes(arr[i])){
+            count++;
+        }
+    }
+    document.write("số lượng số nguyên âm có trong chuỗi: "+count);
+</script>
+</html>
