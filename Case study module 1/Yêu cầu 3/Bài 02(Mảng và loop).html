@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 02</title>
+</head>
+<body>
+<script>
+    function missingValue(A, B) {
+        // Tạo một Set chứa các phần tử trong mảng A
+        const setA = new Set(A);
+
+        // Sử dụng filter để lọc ra các phần tử trong mảng B không có trong mảng A
+        const result = B.filter((element) => !setA.has(element));
+        result.sort((a,b)=>a-b);
+        return result;
+    }
+    const A = [7, 2, 5, 3, 5, 3];
+    const B = [7, 9, 5, 4, 6, 3, 5, 3];
+
+    const missingValues = missingValue(A, B);
+    document.write(missingValues);
+</script>
+</body>
+</html>
